@@ -18,8 +18,9 @@ jobs:
         run: chmod +x ./venv/Scripts/activate
 
       - name: Convert line endings to Unix format
-        run: dos2unix ./venv/Scripts/activate
+        run: tr -d '\r' < ./venv/Scripts/activate > ./venv/Scripts/activate_unix
         if: runner.os == 'Linux'
+      
       
       
       - name: Activate Venv
