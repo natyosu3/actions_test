@@ -15,7 +15,7 @@ jobs:
         run: python -V
       
       - name: Activate Venv
-        run: ./venv/Scripts/activate
+        run: . .venv/Scripts/activate
       # - name: Install dependencies
       #   run: pip install -r requirements.txt
       - name: Run Python
