@@ -14,12 +14,12 @@ jobs:
       - name: Get Python version
         run: python -V
 
+      - name: Make activate script executable
+        run: chmod +x ./venv/Scripts/activate
+
       - name: Convert line endings to Unix format
         run: dos2unix ./venv/Scripts/activate
         if: runner.os == 'Linux'
-
-      - name: Make activate script executable
-        run: chmod +x ./venv/Scripts/activate
       
       
       - name: Activate Venv
