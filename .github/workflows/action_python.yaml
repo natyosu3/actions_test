@@ -6,7 +6,7 @@ jobs:
   run-python:
     runs-on: ubuntu-latest
     env:
-      MY_VARIABLE: ${{ secrets.TEST }}
+      TEST: ${{ secrets.TEST }}
 
     steps:
       - uses: actions/checkout@v2
