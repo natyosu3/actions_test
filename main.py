@@ -12,6 +12,7 @@ async def on_ready():
     print("pingを確認")
     echo: discord.Member = bot.get_guild(GUILD_ID).get_member(Echo_ID)
 
+
     print(echo.status)
     await bot.close()
 
