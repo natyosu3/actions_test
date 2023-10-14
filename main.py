@@ -3,6 +3,7 @@ import os
 
 
 TOKEN = str(os.environ.get("TOKEN"))
+TEST = str(os.environ.get("TEST"))
 GUILD_ID = 1117469059957665942
 Echo_ID = 1059820902755344473
 bot = discord.Client(intents=discord.Intents.all())
@@ -17,4 +18,5 @@ async def on_ready():
 
 
 if __name__ == '__main__':
-    bot.run(TOKEN)
+    print(TEST)
+    # bot.run(TOKEN)
