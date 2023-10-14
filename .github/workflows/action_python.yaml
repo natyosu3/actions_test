@@ -14,18 +14,7 @@ jobs:
       - name: Get Python version
         run: python -V
 
-      - name: Make activate script executable
-        run: chmod +x ./venv/Scripts/activate
-
-      - name: Convert line endings to Unix format
-        run: tr -d '\r' < ./venv/Scripts/activate > ./venv/Scripts/activate_unix
-        if: runner.os == 'Linux'
-      
-      
-      
-      - name: Activate Venv
-        run: ./venv/Scripts/activate
-      # - name: Install dependencies
-      #   run: pip install -r requirements.txt
+      - name: Install dependencies
+        run: pip install discord
       - name: Run Python
         run: python main.py
