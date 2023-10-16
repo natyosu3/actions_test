@@ -1,51 +1,41 @@
 import discord
 import os
-
+from datetime import datetime
 
 TOKEN = str(os.environ.get("TOKEN"))
 GUILD_ID = 1117469059957665942
-
 CH_ID = 913410359711375410
-
 Echo_ID = 1059820902755344473
+
 bot = discord.Client(intents=discord.Intents.all())
+
+async def update_status():
+    echo = bot.get_guild(GUILD_ID).get_member(Echo_ID)
+    ch = bot.get_channel(CH_ID)
+    status_msg = await ch.fetch_message(1163366925661917234)
+
+    current_time = datetime.now()
+    formatted_time = current_time.strftime("%Y-%m-%d %H:%M:%S")
+
+    if echo.status == discord.Status.online:
+        embed = discord.Embed(
+            title="Echo BOT Status",
+            color=discord.Color.green(),
+            description=f"```python\n[{formatted_time}] Online!```"
+        )
+    else:
+        embed = discord.Embed(
+            title="Echo BOT Status",
+            color=discord.Color.red(),
+            description=f"```python\n[{formatted_time}] Offline!\n Echo is downing...```"
+        )
+
+    await status_msg.edit(embed=embed)
 
 @bot.event
 async def on_ready():
-    echo: discord.Member = bot.get_guild(GUILD_ID).get_member(Echo_ID)
-    ch: discord.TextChannel = bot.get_channel(CH_ID)
-
-    status_msg: discord.Message = await ch.fetch_message(1163366925661917234)
-
-    if str(echo.status) == "online" and status_msg != None:
-        await status_msg.edit(embed=discord.Embed(
-            title="Echo BOT Status",
-            color=discord.Color.green(),
-            description="```python\nOnline!```"
-        ))
-    else:
-        await status_msg.edit(embed=discord.Embed(
-            title="Echo BOT Status",
-            color=discord.Color.red(),
-            description="```python\nOffline!\n Echo is downing...```"
-        ))
-
-    if status_msg == None:
-        if str(echo.status) == "online":
-            await status_msg.edit(embed=discord.Embed(
-                title="Echo BOT Status",
-                color=discord.Color.green(),
-                description="```python\nOnline!```"
-            ))
-        else:
-            await status_msg.edit(embed=discord.Embed(
-                title="Echo BOT Status",
-                color=discord.Color.red(),
-                description="```python\nOffline!\n Echo is downing...```"
-            ))
-
-    await bot.close()
-
+    await update_status()
+    print("Bot is ready")
 
 if __name__ == '__main__':
     bot.run(TOKEN)
