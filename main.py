@@ -31,11 +31,11 @@ async def update_status():
         )
 
     await status_msg.edit(embed=embed)
+    await bot.close()
 
 @bot.event
 async def on_ready():
     await update_status()
-    print("Bot is ready")
 
 if __name__ == '__main__':
     bot.run(TOKEN)
