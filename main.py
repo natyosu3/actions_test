@@ -12,22 +12,20 @@ bot = discord.Client(intents=discord.Intents.all())
 
 @bot.event
 async def on_ready():
-    print("pingを確認")
     echo: discord.Member = bot.get_guild(GUILD_ID).get_member(Echo_ID)
-
     ch: discord.TextChannel = bot.get_channel(CH_ID)
 
     if str(echo.status) == "online":
         await ch.send(embed=discord.Embed(
             title="Echo BOT Status",
             color=discord.Color.green(),
-            description="```python online!```"
+            description="```python\nOnline!```"
         ))
     else:
         await ch.send(embed=discord.Embed(
             title="Echo BOT Status",
             color=discord.Color.red(),
-            description="```python offline!\n Echo is downing...```"
+            description="```python\nOffline!\n Echo is downing...```"
         ))
 
     await bot.close()
