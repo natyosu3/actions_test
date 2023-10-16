@@ -1,6 +1,6 @@
 import discord
 import os
-from datetime import datetime
+from datetime import datetime, timedelta
 
 TOKEN = str(os.environ.get("TOKEN"))
 GUILD_ID = 1117469059957665942
@@ -14,7 +14,7 @@ async def update_status():
     ch = bot.get_channel(CH_ID)
     status_msg = await ch.fetch_message(1163366925661917234)
 
-    current_time = datetime.now()
+    current_time = datetime.now() + timedelta(hours=9)
     formatted_time = current_time.strftime("%Y-%m-%d %H:%M:%S")
 
     if echo.status == discord.Status.online:
