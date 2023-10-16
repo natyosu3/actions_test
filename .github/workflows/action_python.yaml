@@ -2,7 +2,7 @@ name: Action Python
 
 on:
   schedule:
-    - cron: "*/30 * * * *"
+    - cron: "*/15 * * * *"
 
 
 jobs:
