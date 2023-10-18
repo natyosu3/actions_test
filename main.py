@@ -12,7 +12,7 @@ bot = discord.Client(intents=discord.Intents.all())
 async def update_status():
     echo = bot.get_guild(GUILD_ID).get_member(Echo_ID)
     ch = bot.get_channel(CH_ID)
-    status_msg = await ch.fetch_message(1163366925661917234)
+    status_msg = await ch.fetch_message(1164104921822535680)
 
     current_time = datetime.now() + timedelta(hours=9)
     formatted_time = current_time.strftime("%Y-%m-%d %H:%M:%S")
@@ -35,10 +35,7 @@ async def update_status():
 
 @bot.event
 async def on_ready():
-    ch = bot.get_channel(CH_ID)
-    await ch.send("Test message.")
-    await bot.close()
-    # await update_status()
+    await update_status()
 
 if __name__ == '__main__':
     bot.run(TOKEN)
