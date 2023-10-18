@@ -4,7 +4,7 @@ from datetime import datetime, timedelta
 
 TOKEN = str(os.environ.get("TOKEN"))
 GUILD_ID = 1117469059957665942
-CH_ID = 913410359711375410
+CH_ID = 1118118329907949589
 Echo_ID = 1059820902755344473
 
 bot = discord.Client(intents=discord.Intents.all())
@@ -21,13 +21,13 @@ async def update_status():
         embed = discord.Embed(
             title="Echo BOT Status",
             color=discord.Color.green(),
-            description=f"```python\n[{formatted_time}] Online!```"
+            description=f"```md\n# [{formatted_time}] Online!```"
         )
     else:
         embed = discord.Embed(
             title="Echo BOT Status",
             color=discord.Color.red(),
-            description=f"```python\n[{formatted_time}] Offline!\n Echo is downing...```"
+            description=f"```md\n# [{formatted_time}] Offline!\n Echo is downing...```"
         )
 
     await status_msg.edit(embed=embed)
@@ -35,7 +35,10 @@ async def update_status():
 
 @bot.event
 async def on_ready():
-    await update_status()
+    ch = bot.get_channel(CH_ID)
+    await ch.send("Test message.")
+    await bot.close()
+    # await update_status()
 
 if __name__ == '__main__':
     bot.run(TOKEN)
